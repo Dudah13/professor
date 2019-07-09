@@ -5,7 +5,10 @@
  */
 package controlador;
 
-import Tela.manutencao.Professor;
+import Tela.manutencao.ManutencaoProfessor;
+import dao.ProfessorDao;
+import javax.swing.JOptionPane;
+import modelo.Professor;
 
 /**
  *
@@ -13,8 +16,19 @@ import Tela.manutencao.Professor;
  */
 public class ControladorProfessor {
 
-    public static void inserir(Professor aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public static void inserir(ManutencaoProfessor man){
+        Professor objeto = new Professor();
+         objeto.setNome(man.jtfNome.getText());
+        objeto.setSobrenome(man.jtfSobrenome.getText());
+        objeto.setEndereco(man.jtfEndereco.getText());
+        
+        boolean resultado = ProfessorDao.inserir(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+}
     
 }
+  
